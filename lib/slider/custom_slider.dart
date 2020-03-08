@@ -4,21 +4,8 @@ import 'package:provider/provider.dart';
 
 import '../common_colors.dart';
 
-class CustomSlider extends StatefulWidget {
-  @override
-  _CustomSliderState createState() => _CustomSliderState();
-}
-
-class _CustomSliderState extends State<CustomSlider> {
-  double _currentValue = 0;
-  double _initialValue = 20;
-  double _trackHeight = 10.0;
-
-  @override
-  void initState() {
-    _currentValue = _initialValue;
-    super.initState();
-  }
+class CustomSlider extends StatelessWidget {
+  final double _trackHeight = 10.0;
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +16,13 @@ class _CustomSliderState extends State<CustomSlider> {
         valueIndicatorColor: CommonColors.valueIndicatorColor,
         showValueIndicator: ShowValueIndicator.onlyForContinuous,
         valueIndicatorTextStyle:
-            CommonTextStyles.getMediumTextStyleLight(context).copyWith(
+        CommonTextStyles.getMediumTextStyleLight(context).copyWith(
           fontSize: 10,
         ),
         thumbColor: CommonColors.grayColor,
       ),
       child: Slider(
-          label: '${_currentValue.round()} players',
+          label: '${Provider.of<SliderValueNotifier>(context).currentValue.round()} players',
           min: 0,
           max: 100,
           value: Provider.of<SliderValueNotifier>(context).currentValue,

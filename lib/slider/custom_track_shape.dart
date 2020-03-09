@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class CustomTrackShape extends SliderTrackShape {
-
   final double maxPlayers;
   final double defaultPlayers;
   final double minPlayers;
@@ -9,8 +8,12 @@ class CustomTrackShape extends SliderTrackShape {
   final double currentPosition;
   double trackWidth;
 
-  CustomTrackShape({@required this.maxPlayers, @required this.defaultPlayers, @required this.minPlayers,
-    @required this.currentPosition,});
+  CustomTrackShape({
+    @required this.maxPlayers,
+    @required this.defaultPlayers,
+    @required this.minPlayers,
+    @required this.currentPosition,
+  });
 
   @override
   Rect getPreferredRect(
@@ -19,8 +22,12 @@ class CustomTrackShape extends SliderTrackShape {
       SliderThemeData sliderTheme,
       bool isEnabled,
       bool isDiscrete}) {
-    final double thumbWidth = sliderTheme.thumbShape.getPreferredSize(
-          isEnabled, isDiscrete,).width;
+    final double thumbWidth = sliderTheme.thumbShape
+        .getPreferredSize(
+          isEnabled,
+          isDiscrete,
+        )
+        .width;
     final double trackHeight = sliderTheme.trackHeight;
     assert(thumbWidth >= 0);
     assert(trackHeight >= 0);
@@ -50,8 +57,7 @@ class CustomTrackShape extends SliderTrackShape {
       bool isDiscrete,
       TextDirection textDirection}) {
     // Check for slider track height
-    if (sliderTheme.trackHeight == 0)
-      return;
+    if (sliderTheme.trackHeight == 0) return;
     // Get the rect that we just calculated
     final Rect trackRect = getPreferredRect(
       parentBox: parentBox,
@@ -63,7 +69,29 @@ class CustomTrackShape extends SliderTrackShape {
 
     // Calculate the width for which the default players
     // will be covered on the slider track shape
-    double defaultPlayerWidth = (trackWidth/maxPlayers) * defaultPlayers;
-    double currentPositionWidth = (trackWidth/maxPlayers) * currentPosition;
+    double defaultPlayerWidth = (trackWidth / maxPlayers) * defaultPlayers;
+    double currentPositionWidth = (trackWidth / maxPlayers) * currentPosition;
+
+    // calculating the paint
+    // for the default path (initial width)
+    final Paint defaultPathPaint = Paint()
+      ..color = sliderTheme.activeTrackColor
+      ..style = PaintingStyle.fill;
+
+    // calculate the path segment for
+    // the default width
+    final defaultPathSegment = Path()
+      ..addRect(
+        Rect.fromPoints(
+          Offset(trackRect.left, trackRect.top),
+          Offset(
+              trackRect.left +
+                  (currentPositionWidth >= defaultPlayerWidth
+                      ? defaultPlayerWidth
+                      : currentPositionWidth),
+              trackRect.bottom),
+        ),
+      );
+    context.canvas.drawPath(defaultPathSegment, defaultPathPaint);
   }
 }

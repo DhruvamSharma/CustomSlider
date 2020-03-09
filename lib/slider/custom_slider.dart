@@ -7,7 +7,9 @@ import 'custom_track_shape.dart';
 
 class CustomSlider extends StatelessWidget {
   final double _trackHeight = 10.0;
-
+  final double _defaultPlayers = 30;
+  final double _maxPlayers = 100;
+  final double _minPlayers = 0;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,13 +26,18 @@ class CustomSlider extends StatelessWidget {
           ),
           thumbColor: CommonColors.grayColor,
           // Step 1: customise track shape
-          trackShape: CustomTrackShape(),
+          trackShape: CustomTrackShape(
+            currentPosition: Provider.of<SliderValueNotifier>(context).currentValue,
+            defaultPlayers: _defaultPlayers,
+            maxPlayers: _maxPlayers,
+            minPlayers: _minPlayers,
+          ),
         ),
         child: Slider(
             label:
                 '${Provider.of<SliderValueNotifier>(context).currentValue.round()} players',
-            min: 0,
-            max: 100,
+            min: _minPlayers,
+            max: _maxPlayers,
             value: Provider.of<SliderValueNotifier>(context).currentValue,
             onChanged: (value) {
               Provider.of<SliderValueNotifier>(context, listen: false)

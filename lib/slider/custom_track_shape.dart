@@ -117,7 +117,7 @@ class CustomTrackShape extends SliderTrackShape {
       ..addRect(
         Rect.fromPoints(
           Offset(trackRect.right, trackRect.top),
-          Offset(trackRect.right - (trackWidth - currentPositionWidth), trackRect.bottom,),
+          Offset(trackRect.left + currentPositionWidth, trackRect.bottom,),
         ),
       )..arcTo(
         Rect.fromPoints(

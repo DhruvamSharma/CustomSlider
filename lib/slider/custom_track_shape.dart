@@ -8,8 +8,19 @@ class CustomTrackShape extends SliderTrackShape {
       SliderThemeData sliderTheme,
       bool isEnabled,
       bool isDiscrete}) {
-    // TODO: implement getPreferredRect
-    return null;
+
+      final double thumbWidth = sliderTheme.thumbShape.getPreferredSize(isEnabled, isDiscrete,).width;
+      final double trackHeight = sliderTheme.trackHeight;
+      assert(thumbWidth >= 0);
+      assert(trackHeight >= 0);
+      assert(parentBox.size.width >= thumbWidth);
+      assert(parentBox.size.height >= trackHeight);
+
+      final double trackTop = offset.dy + (parentBox.size.height - trackHeight) / 2;
+      final double trackLeft = offset.dx + thumbWidth/2;
+      final double trackWidth = parentBox.size.width - thumbWidth;
+
+    return Rect.fromLTWH(trackLeft, trackTop, trackWidth, trackHeight,);
   }
 
   @override

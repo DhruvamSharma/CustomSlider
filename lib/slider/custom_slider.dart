@@ -10,30 +10,33 @@ class CustomSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliderTheme(
-      data: SliderTheme.of(context).copyWith(
-        activeTrackColor: Colors.amber,
-        trackHeight: _trackHeight,
-        valueIndicatorColor: CommonColors.valueIndicatorColor,
-        showValueIndicator: ShowValueIndicator.onlyForContinuous,
-        valueIndicatorTextStyle:
-            CommonTextStyles.getMediumTextStyleLight(context).copyWith(
-          fontSize: 10,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: SliderTheme(
+        data: SliderTheme.of(context).copyWith(
+          activeTrackColor: Colors.amber,
+          trackHeight: _trackHeight,
+          valueIndicatorColor: CommonColors.valueIndicatorColor,
+          showValueIndicator: ShowValueIndicator.onlyForContinuous,
+          valueIndicatorTextStyle:
+              CommonTextStyles.getMediumTextStyleLight(context).copyWith(
+            fontSize: 10,
+          ),
+          thumbColor: CommonColors.grayColor,
+          // Step 1: customise track shape
+          trackShape: CustomTrackShape(),
         ),
-        thumbColor: CommonColors.grayColor,
-        // Step 1: customise track shape
-        trackShape: CustomTrackShape(),
+        child: Slider(
+            label:
+                '${Provider.of<SliderValueNotifier>(context).currentValue.round()} players',
+            min: 0,
+            max: 100,
+            value: Provider.of<SliderValueNotifier>(context).currentValue,
+            onChanged: (value) {
+              Provider.of<SliderValueNotifier>(context, listen: false)
+                  .changeValue(value);
+            }),
       ),
-      child: Slider(
-          label:
-              '${Provider.of<SliderValueNotifier>(context).currentValue.round()} players',
-          min: 0,
-          max: 100,
-          value: Provider.of<SliderValueNotifier>(context).currentValue,
-          onChanged: (value) {
-            Provider.of<SliderValueNotifier>(context, listen: false)
-                .changeValue(value);
-          }),
     );
   }
 }

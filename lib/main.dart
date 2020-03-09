@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData.dark(),
       home: ChangeNotifierProvider<SliderValueNotifier>(
-        create: (context) => SliderValueNotifier(),
+        create: (context) => SliderValueNotifier(30),
         child: MyHomePage(title: 'Flutter Demo Home Page'),
       ),
     );

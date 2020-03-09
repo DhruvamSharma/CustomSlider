@@ -36,11 +36,16 @@ class CustomSlider extends StatelessWidget {
 }
 
 class SliderValueNotifier extends ChangeNotifier {
-  double _currentValue = 20;
+
+
+
+  double _currentValue;
   void changeValue(double value) {
     _currentValue = value;
     notifyListeners();
   }
 
   double get currentValue => _currentValue;
+
+  SliderValueNotifier(this._currentValue);
 }

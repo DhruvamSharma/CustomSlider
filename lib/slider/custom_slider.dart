@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../common_colors.dart';
+import 'custom_track_shape.dart';
 
 class CustomSlider extends StatelessWidget {
   final double _trackHeight = 10.0;
@@ -20,6 +21,8 @@ class CustomSlider extends StatelessWidget {
           fontSize: 10,
         ),
         thumbColor: CommonColors.grayColor,
+        // Step 1: customise track shape
+        trackShape: CustomTrackShape(),
       ),
       child: Slider(
           label:

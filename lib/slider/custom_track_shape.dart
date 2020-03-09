@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class CustomTrackShape extends SliderTrackShape {
@@ -91,7 +93,18 @@ class CustomTrackShape extends SliderTrackShape {
                       : currentPositionWidth),
               trackRect.bottom),
         ),
+      )
+      ..lineTo(trackRect.left, trackRect.bottom)
+      ..arcTo(
+        Rect.fromPoints(
+          Offset(trackRect.left + 5, trackRect.top),
+          Offset(trackRect.left - 5, trackRect.bottom),
+        ),
+        -pi * 3 / 2,
+        pi,
+        false,
       );
+
     context.canvas.drawPath(defaultPathSegment, defaultPathPaint);
   }
 }

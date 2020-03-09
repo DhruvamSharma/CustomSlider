@@ -10,6 +10,7 @@ class CustomSlider extends StatelessWidget {
   final double _defaultPlayers = 30;
   final double _maxPlayers = 100;
   final double _minPlayers = 0;
+  final double _selectedPathBarWidth = 5;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,6 +32,7 @@ class CustomSlider extends StatelessWidget {
             defaultPlayers: _defaultPlayers,
             maxPlayers: _maxPlayers,
             minPlayers: _minPlayers,
+            selectedPathBarWidth: _selectedPathBarWidth,
           ),
         ),
         child: Slider(

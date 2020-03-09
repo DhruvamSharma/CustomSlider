@@ -106,5 +106,28 @@ class CustomTrackShape extends SliderTrackShape {
       );
 
     context.canvas.drawPath(defaultPathSegment, defaultPathPaint);
+
+    //calculate the paint for the path segment
+    // that is unselected (inactive track)
+    final unselectedPathPaint = Paint()
+      ..style = PaintingStyle.fill
+      ..color = sliderTheme.inactiveTrackColor;
+
+    final unselectedPathSegment = Path()
+      ..addRect(
+        Rect.fromPoints(
+          Offset(trackRect.right, trackRect.top),
+          Offset(trackRect.right - (trackWidth - currentPositionWidth), trackRect.bottom,),
+        ),
+      )..arcTo(
+        Rect.fromPoints(
+          Offset(trackRect.right + 5, trackRect.top),
+          Offset(trackRect.right - 5, trackRect.bottom),
+        ),
+        -pi/2,
+        pi,
+        false,
+      );
+    context.canvas.drawPath(unselectedPathSegment, unselectedPathPaint);
   }
 }

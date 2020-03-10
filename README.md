@@ -2,7 +2,7 @@
 
 A showcase for how flutter is being used at Gamezop
 
-Link to the corresponding article: https://medium.com/gamezop/a-custom-drawn-slider-for-flutter-a51b6b94c513
+Link to the corresponding article: http://bit.ly/gamezop-slider
 
 <img src="https://github.com/DhruvamSharma/CustomSlider/blob/master/assets/defined_selected_width.png">
 

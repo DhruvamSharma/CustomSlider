@@ -2,6 +2,8 @@
 
 A showcase for how flutter is being used at Gamezop
 
+<img src="https://github.com/DhruvamSharma/CustomSlider/blob/master/assets/defined_selected_width.png">
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
